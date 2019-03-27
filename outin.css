@@ -1,0 +1,53 @@
+h4 {text-align:center}
+.keski {margin-left:50px}
+.header {position:fixed;}
+.footer {
+   position:fixed;
+   width:100%;
+   bottom:0;
+   background-color:black;
+   text-align:center;
+   padding:5px;
+   height:40px;
+   clear:both
+}
+iframe {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+option {font-weight: bold}
+
+#uinti {text-align: center}
+#fillari {text-align: center}
+#juoksu {text-align: center}
+#ala {color:white}
+#testi1 {text-align: center}
+.img-thumbnail {
+    margin: auto;    
+    display: block;
+}
+
+.jumbotron {text-align:center}
+.matkat {text-align:center}
+.table {
+    font-family: arial, sans-serif;
+    width: 80%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.vip {font-size:20px}
+
+body {
+    padding-bottom:40px;
+    height:100%
+}
+.turkoosi {background-color:rgb(102,255,255); padding:5px}
+.oranssi {background-color:rgb(255,161,97); padding:5px}
+.lila {background-color:rgb(209,113,161); padding:5px}

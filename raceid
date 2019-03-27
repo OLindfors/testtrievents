@@ -1,0 +1,65 @@
+if ($event = 'Helsinki 15.6.2019' && $distance = 'Perusmatka') {
+	$raceid = 'R103'; }
+	
+if ($event = 'Helsinki 15.6.2019' && $distance = 'Puolimatka') {
+	$raceid = 'R104'; }
+		
+if ($event = 'Turku 30.6.2019' && $distance = 'Pikasprint') {
+	$raceid = 'R201'; }
+		
+if ($event = 'Turku 30.6.2019' && $distance = 'Sprint') {
+	$raceid = 'R202'; }
+		
+if ($event = 'Turku 30.6.2019' && $distance = 'Perusmatka') {
+	$raceid = 'R203'; }
+	
+if ($event = 'Turku 30.6.2019' && $distance = 'Puolimatka') {
+	$raceid = 'R204'; }
+	
+if ($event = 'Lahti 5.7.2019' && $distance = 'Pikasprint') {
+	$raceid = 'R301'; }
+		
+if ($event = 'Lahti 5.7.2019' && $distance = 'Sprint') {
+	$raceid = 'R302'; }
+		
+if ($event = 'Lahti 5.7.2019' && $distance = 'Perusmatka') {
+	$raceid = 'R303'; }
+	
+if ($event = 'Lahti 5.7.2019' && $distance = 'Puolimatka') {
+	$raceid = 'R304'; }
+	
+if ($event = 'Kuopio 17.7.2019' && $distance = 'Pikasprint') {
+	$raceid = 'R401';}
+		
+if ($event = 'Kuopio 17.7.2019' && $distance = 'Sprint') {
+	$raceid = 'R402'; }
+		
+if ($event = 'Kuopio 17.7.2019' && $distance = 'Perusmatka') {
+	$raceid = "R403"; }
+	
+if ($event = 'Kuopio 17.7.2019' && $distance = 'Puolimatka') {
+	$raceid = 'R404'; }
+	
+if ($event = 'Jyväskylä 29.7.2019' && $distance = 'Pikasprint') {
+	$raceid = 'R501';}
+		
+if ($event = 'Jyväskylä 29.7.2019' && $distance = 'Sprint') {
+	$raceid = 'R502'; }
+		
+if ($event = 'Jyväskylä 29.7.2019' && $distance = 'Perusmatka') {
+	$raceid = 'R503';}
+	
+if ($event = 'Jyväskylä 29.7.2019' && $distance = 'Puolimatka') {
+	$raceid = 'R504'; }
+	
+if ($event = 'Oulu 13.8.2019' && $distance = 'Pikasprint') {
+	$raceid = 'R601'; }
+	
+if ($event = 'Oulu 13.8.2019' && $distance = 'Sprint') {
+	$raceid = 'R602'; }
+	
+if ($event = 'Oulu 13.8.2019' && $distance = 'Perusmatka') {
+	$raceid = 'R603'; }
+	
+if ($event = 'Oulu 13.8.2019' && $distance = 'Puolimatka') {
+	$raceid = 'R604'; }
