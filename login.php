@@ -1,32 +1,4 @@
-<?php include("head.php"); 
-
-
-if (isset($_POST['email']) and isset($_POST['password'])) {
-	include("conn.php");
-	$user=$_POST['email'];
-    $password=filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
- 
-	$ret=mysqli_query($conn, "SELECT Email,Passwrd FROM user WHERE Email='$user' AND Passwrd='$password'") or die("Could not execute query: " .mysqli_error($conn));
-    $row = mysqli_fetch_assoc($ret);
-    $email = $row['Email'];
-    $hash = $row['Passwrd'];    
-
-	if(!$row) {
-        header("Location: muutokset.php");
-        echo "Jokin meni vikaan. Yritä uudestaan.";
-	}
-	else {
-        if (password_verify($hashed_password,$hash)) {
-	    session_start();
-	    $_SESSION['user']=$user;
-		header('location: muutokset_second.php');
-        } else {
-            echo "Salasana on väärä.";
-        }
-    }
-}
-?>
+<?php include("head.php"); ?>
 
     <body>
 
@@ -44,10 +16,10 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
             <div id="navi7" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="index.php"><span class="glyphicon glyphicon-home"></span></a></li>
-                    <li><a href="kalenteri.php"><b>Kisakalenteri ja ilmoittautuminen</b></a></li>
-                    <li class="active"><a href="muutokset.php"><b>Muuta yhteystietojasi</b></a></li>
-                    <li><a href="tulokset.php"><b>Tulokset</b></a></li>
 
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="index.php"><span class="glyphicon glyphicon-log-ou"></span> Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -60,7 +32,7 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
             </div>
 
             <div class="col-sm-10">
-                <h3 class="oranssi">Muuta yhteystietojasi</h3>
+                <h3 class="oranssi">Admin login page</h3>
 
             </div>
             <div class="col-sm-1">
@@ -74,7 +46,7 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
 
             <div class="col-sm-5">
 
-                <form name="checking" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
+                <form name="checking" action="peruutukset.php" method="post">
                     <div class="form-group">
 
                         <label for="email">Sähköposti</label>

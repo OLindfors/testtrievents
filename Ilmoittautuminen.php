@@ -1,106 +1,158 @@
+<?php include("head.php"); 
 
-<?php include ("head.php"); ?>
-
-
-<body>
-
-<nav class="navbar navbar-inverse">
- <div class="container">
-  <div class="navbar-header">
-   <a class="navbar-brand" href="index.php">TestTriClub</a>
-<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navi5">
-   	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
-</button>
-
-</div>
-
-<div id="navi5" class="collapse navbar-collapse">
-
-<ul class="nav navbar-nav">
-<!--li><a href="index.php">Etusivu</a></li>
-<li class="active"><a href="bike.php">Kisakalenteri ja ilmoittautuminen</a></li-->
-<li><a href="kalenteri.php">Takaisin kalenteriin</a></li>
-</ul>
-
-</div>
-</div>
-
-</nav>
-
-<div class="container">
-
-<div class="row">
-<div class="col-sm-1">
-</div>
-
-<div class="col-sm-10">
-<h3 class="turkoosi">Ilmoittautumislomake: Täytä tietosi, valitse tapahtuma ja matka</h3>
-
-</div>
-
-<div class="col-sm-1">
-</div>
-
-</div>
-
-<div class="row">
-<div class="col-sm-3">
-</div>
-
-<div class="col-sm-6">
+if (isset($_POST['register']) && ($_POST['email'] !== $_POST['emailx']))
+{
+       myFunc();
+}
+function myFunc()
+{
+	echo "Sähköpostit eivät täsmää!";
+}
 
 
-<form name="signin" action="signIn.php" method="post">
-  <div class="form-group">
-    <br>
-    <input type="text" class="form-control" name="fname" placeholder="Etunimi">
-    <br>
-    <input type="text" class="form-control" name="lname" placeholder="Sukunimi">
-    <br>
-    <input type="email" class="form-control" name="email" placeholder="Sähköposti">
-    <br>
-    <input type="text" class="form-control" name="phone" placeholder="Puhelinnumero">
-    <br>
-    <input type="password" class="form-control" name="password" placeholder="Keksi itsellesi salasana (max 10 merkkiä)">
-    <br>
-    <input type="password" class="form-control" name="password" placeholder="Toista salasana">
+?>
+
+<!--script type="text/javascript">
+
+function validateForm() {
+
+    var email1 = document.forms["signin1"]["email"].value;
+    var email2 = document.forms["signin1"]["emailx"].value;
+    var psword = document.forms["signin1"]["password"].value;
+    var psword2 = ddocument.forms["signin1"]["password2"].value;
+
+    if (email1 !== email2) {
+        alert("Sähköpostiosoitteet eivät täsmää!");
+        return false;
+    } else if (psword !== psword2) {
+        alert ("Salasanat eivät täsmää!")
+        return false;
+    } else {
+        return true;
+    }
+}
+</script-->
+
+    <body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">TestTriClub</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navi5">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+
+            <div id="navi5" class="collapse navbar-collapse">
+
+                <ul class="nav navbar-nav">
+                    <li><a href="index.php"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <li class="active"><a href="Ilmoittautuminen.php"><b>Ilmoittautuminen</b></a></li>
+                    <li><a href="muutokset.php"><b>Muuta yhteystietojasi</b></a></li>
+                    <li><a href="tulokset.php"><b>Tulokset</b></a></li>
+                </ul>
+
+            </div>
+        </div>
+
+    </nav>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+
+            <div class="col-sm-10">
+                <h3 class="turkoosi">Ilmoittautuminen vaihe 1. OMAT TIEDOT</h3>
+                <p style="text-align:center">Anna ensin yhteystietosi ja keksi itsellesi salasana. Kaikki kentät ovat
+                    pakollisia.
+                    <br>Tallenna tiedot, niin pääset jatkamaan ilmoittautumiseen.</p>
+
+            </div>
+
+            <div class="col-sm-1">
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2">
+            </div>
+
+            <div class="col-sm-8">
+
+<!--Käyttäjä syöttää etunimi, sukunimi, s-posti kahteen kertaan, puhelin ja keksii salasanan (syöttää kaksi kertaa)-->
+                <form class="form-horizontal" name="signin1" action="Ilmoittautuminen_second.php" method="post">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="fname">Etunimi:</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="fname" placeholder="Etunimi" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="lname">Sukunimi:</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="lname" placeholder="Sukunimi" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="email">Sähköposti:</label>
+                        <div class="col-sm-7">
+                            <input type="email" class="form-control" name="email" placeholder="Sähköposti" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="emailx">Toista sähköposti:</label>
+                        <div class="col-sm-7">
+                            <input type="email" class="form-control" name="emailx" placeholder="Toista sähköposti"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="phone">Puhelinnumero:</label>
+                        <div class="col-sm-7">
+                            <input type="tel" minlength="10" class="form-control" name="phone" placeholder="Puhelinnumero" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="password">Salasana:</label>
+                        <div class="col-sm-7">
+                            <input type="password" minlength="8" class="form-control" name="password"
+                                   placeholder="Keksi itsellesi salasana (min. pituus 8 merkkiä)" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="password2">Toista salasana:</label>
+                        <div class="col-sm-7">
+                            <input type="password" minlength="8" class="form-control" name="password2" placeholder="Toista salasana"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-7">
+                            <button class="btn btn-primary" type="submit" onclick="return validateForm()" name="register">Tallenna tiedot
+                            </button>
+                        </div>
+                </form>
+
+            </div>
+            <div class="col-sm-2">
+
+            </div>
+        </div>
+
+        <br>
+
     </div>
-  <br>    
-  <div class="form-group">
-    <label for="valitseTapahtuma" name="event" id="eventlist">Ilmoittaudun tapahtumaan</label>
-    <br>
-    <label class="checkbox-inline"><input type="checkbox" value="">Helsinki TestTri 15.6.2019</label> <br>
-    <label class="checkbox-inline"><input type="checkbox" value="">Turku TestTri 30.6.2019</label> <br>
-    <label class="checkbox-inline"><input type="checkbox" value="">Lahti TestTri 5.7.2019</label><br>
-    <label class="checkbox-inline"><input type="checkbox" value="">Kuopio TestTri 17.7.2019</label> <br>
-    <label class="checkbox-inline"><input type="checkbox" value="">Jyväskylä TestTri 29.7.2019</label> <br>
-    <label class="checkbox-inline"><input type="checkbox" value="">Oulu TestTri 13.8.2019</label>
-  </div>
-  <div class="form-group">
-    <label id="matka" for="valitseMatka">Osallistun matkalle</label>
-    <br>
-    <label class="checkbox-inline"><input type="checkbox" value="" name="Pikasprint">Pikasprint (300 / 10 / 3)</label><br>
-    <label class="checkbox-inline"><input type="checkbox" value="" name="Sprint">Sprint (750 / 20 / 5)</label><br>
-    <label class="checkbox-inline"><input type="checkbox" value="" name="Perusmatka">Perusmatka (1500 / 40 /10)</label><br>
-    <label class="checkbox-inline"><input type="checkbox" value="" name="Puolimatka">Puolimatka (1900 / 90 / 21)</label>
+
     </div>
-  <button class="btn btn-primary" type="submit" value="Ilmoittaudu" onclick="myFunction()">Ilmoittaudu</button>
-  <button type="button" class="btn btn-secondary" id="empty" onclick="emptyForm()" style="display:none">Tyhjennä lomake</button>
-</form>
+    </div>
 
-</div>
-<div class="col-sm-3">
-
-</div>
-</div>
-
-<br>
-
-</div>
-
-</div>
-</div>
-
-<?php include ("footer.php"); ?>
+<?php include("footer.php"); ?>

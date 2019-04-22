@@ -1,9 +1,9 @@
 <footer class="footer">
 
-<div class="container">
-
-	<p id="ala">TestTriClub &copy; Outi Lindfors</p>
-</div>	
+    <div class="container">
+        
+            <p id="ala">TestTriClub &copy; OLindfors</p>
+    </div>
 
 </footer>
 
