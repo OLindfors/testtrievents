@@ -2,13 +2,14 @@
 
 include("conn.php");
 
-
-if (isset($_POST['email']) and $_POST['email'] = "outli@welho.com" and isset($_POST['password'])) {
+/*Tarkistetaan annettu s-posti ja salasana -> vastaavatko userID 1:n tietoja. 
+*/
+if (isset($_POST['email']) and isset($_POST['password'])) {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
 	
-    $sql = "SELECT Passwrd FROM user WHERE Email = '$email'";
+    $sql = "SELECT Passwrd FROM user WHERE userID = '1'";
 
     $result = $conn->query($sql); 
 
@@ -26,12 +27,14 @@ if (isset($_POST['email']) and $_POST['email'] = "outli@welho.com" and isset($_P
 
         } else {
 
-            $ilmoitus = 'Tarkista salasana';
+            echo "Salasana oli väärä";
 
-        } 
+        }
     }
 
 }
+
+$conn->close();
 
 ?>
 
@@ -91,8 +94,7 @@ if (isset($_POST['email']) and $_POST['email'] = "outli@welho.com" and isset($_P
 
                         <br>
 
-                        <button class="btn btn-primary" type="submit">Kirjaudu sisään</button>
-
+                        <button class="btn btn-primary" type="submit">Kirjaudu sisään</button>     
                     </div>
                 </form>
 
