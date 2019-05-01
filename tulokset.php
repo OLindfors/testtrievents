@@ -5,7 +5,7 @@
     <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.php">TestTriClub</a>
+                <a class="navbar-brand">TestTriClub</a>
 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navi5">
                     <span class="icon-bar"></span>
@@ -49,7 +49,7 @@
 
 
                 <form name="results" action="raceresults.php" method="post">
-
+                    <!--Ensiksi valitaan minkä tapahtuman tuloksia halutaan tarkastella-->
                     <div class="form-group">
                         <label for="valitseTapahtuma">Valitse tapahtuma</label>
                         <select class="form-control" name="event">
@@ -61,6 +61,7 @@
                             <option name="Oulu" disabled>Oulu TestTri</option>
                         </select>
                     </div>
+                    <!--Sitten valitaan minkä matkan tulokset edellä valitusta tapahtumasta-->
                     <div class="form-group">
                         <label for="valitseMatka">Valitse matka</label>
                         <select class="form-control" name="distance">

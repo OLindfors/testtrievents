@@ -1,31 +1,42 @@
 <?php include("head.php"); 
 
+    include("conn.php");
 
-if (isset($_POST['email']) and isset($_POST['password'])) {
-	include("conn.php");
-	$user=$_POST['email'];
-    $password=filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
- 
-	$ret=mysqli_query($conn, "SELECT Email,Passwrd FROM user WHERE Email='$user' AND Passwrd='$password'") or die("Could not execute query: " .mysqli_error($conn));
-    $row = mysqli_fetch_assoc($ret);
-    $email = $row['Email'];
-    $hash = $row['Passwrd'];    
+    /*Henkilön sisäänkirjautuesssa tarkistetaan, että kyseinen s-posti ja salasana löytyvät "parina" tietokannasta user-taulusta. 
+    Sähköpostin perusteella haetaan hashattu muoto salasanasta ja verrataan sitä annettuun salasanaan.
+    */
+if (isset($_POST['email']) && isset($_POST['password'])) {
+	
+    $email=$_POST['email'];
+    $password = $_POST['password'];
 
-	if(!$row) {
-        header("Location: muutokset.php");
-        echo "Jokin meni vikaan. Yritä uudestaan.";
-	}
-	else {
-        if (password_verify($hashed_password,$hash)) {
-	    session_start();
-	    $_SESSION['user']=$user;
-		header('location: muutokset_second.php');
-        } else {
-            echo "Salasana on väärä.";
+    $sql = "SELECT Passwrd FROM user WHERE Email = '$email'";
+
+    $result = $conn->query($sql); 
+
+   if ($result->num_rows > 0) {
+
+        while ($row = $result->fetch_assoc()) {
+
+        $hashed_password= $row['Passwrd']; 
         }
     }
+        /*Aloitetaan sessio, jos s-posti ja salasana ovat ok. Ja siirytään seuraavalle "muutokset_second.php" sivulle.
+        Henkilön s-posti sijoitetaan session muuttujaan.    
+        */
+
+        if (password_verify ($password , $hashed_password) == TRUE) {
+            session_start();
+            $_SESSION['user']=$email;
+            header('Location: muutokset_second.php');
+
+        } else {
+
+            $ilmoitus = 'Tarkista salasana';
+
+        } 
 }
+        $conn->close();
 ?>
 
     <body>
@@ -33,7 +44,7 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
     <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.php">TestTriClub</a>
+                <a class="navbar-brand">TestTriClub</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navi7">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -48,6 +59,11 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
                     <li class="active"><a href="muutokset.php"><b>Muuta yhteystietojasi</b></a></li>
                     <li><a href="tulokset.php"><b>Tulokset</b></a></li>
 
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <!--Admin kirjautuminen löytyy vain tämän sivun headerista oikealta-->
+                    <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Admin login</a></li>
                 </ul>
             </div>
         </div>
@@ -74,9 +90,9 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
 
             <div class="col-sm-5">
 
-                <form name="checking" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
+                <form name="checking" action="" method="post">
                     <div class="form-group">
-
+                        <!--Henkilö syöttää sähköpostin ja salasanan-> kirjautuu sisään-->
                         <label for="email">Sähköposti</label>
                         <input type="email" class="form-control" name="email" placeholder="Sähköposti">
                         <label for="password">Salasana</label>
@@ -90,6 +106,7 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
                 </form>
 
             </div>
+
             <div class="col-sm-5">
                 <br>
                 <img src="peguera_pieni.jpg" alt="Maali" class="img-thumbnail">
@@ -101,5 +118,5 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
 
         </div>
     </div>
-
+   
 <?php include("footer.php"); ?>

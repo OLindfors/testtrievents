@@ -1,37 +1,6 @@
 <?php include("head.php"); 
 
-if (isset($_POST['register']) && ($_POST['email'] !== $_POST['emailx']))
-{
-       myFunc();
-}
-function myFunc()
-{
-	echo "Sähköpostit eivät täsmää!";
-}
-
-
 ?>
-
-<!--script type="text/javascript">
-
-function validateForm() {
-
-    var email1 = document.forms["signin1"]["email"].value;
-    var email2 = document.forms["signin1"]["emailx"].value;
-    var psword = document.forms["signin1"]["password"].value;
-    var psword2 = ddocument.forms["signin1"]["password2"].value;
-
-    if (email1 !== email2) {
-        alert("Sähköpostiosoitteet eivät täsmää!");
-        return false;
-    } else if (psword !== psword2) {
-        alert ("Salasanat eivät täsmää!")
-        return false;
-    } else {
-        return true;
-    }
-}
-</script-->
 
     <body>
 
@@ -51,9 +20,6 @@ function validateForm() {
 
                 <ul class="nav navbar-nav">
                     <li><a href="index.php"><span class="glyphicon glyphicon-home"></span></a></li>
-                    <li class="active"><a href="Ilmoittautuminen.php"><b>Ilmoittautuminen</b></a></li>
-                    <li><a href="muutokset.php"><b>Muuta yhteystietojasi</b></a></li>
-                    <li><a href="tulokset.php"><b>Tulokset</b></a></li>
                 </ul>
 
             </div>

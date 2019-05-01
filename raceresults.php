@@ -2,9 +2,12 @@
 
 include("conn.php");
 
+//Edelliseltä sivulta sijoitetaan muuttujiin valitut event (tapahtuma) ja distance (matka). 
+
 $event = $_POST['event'];
 $distance = $_POST['distance'];
 
+//Haetaan tietokannasta kyseisen tapahtuman ja matkan tuloslistaus. Näytetään tulokset taulukossa alempana koodia. 
 if (isset($_POST['event']) && isset($_POST['distance'])) {
 
     $sql = "SELECT race.Eventname,race.Dname,user.Lname,user.Fname,participation.Result 
@@ -60,10 +63,12 @@ ORDER BY participation.Result";
     <div class="col-sm-2">
     </div>
     <div class="col-sm-8">
+
         <?php
+        //Luodaan taulukko, jossa tulokset näytetään.
         if ($result->num_rows > 0) {
 
-            echo "<table border='1'>";
+            echo "<table class='table'>";
             echo "<tr><th>Tapahtuma</th><th>Matka</th><th>Nimi</th><th>Tulos</th></tr>";
 
             while ($row = $result->fetch_assoc()) {

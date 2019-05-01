@@ -3,7 +3,6 @@
 include("conn.php");
 
 /*Edellisellä sivulla annetut tiedot tallennetaan tietokantaan*/
-
 $firstname = filter_var($_POST['fname'], FILTER_SANITIZE_STRING);
 $lastname = filter_var($_POST['lname'], FILTER_SANITIZE_STRING);
 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
@@ -21,6 +20,7 @@ if (mysqli_num_rows($result) > 0) {
     $error_message="Sähköposti on jo käytössä.";
 } else {
 
+/*Edellisellä sivulla annetut tiedot tallennetaan tietokantaan*/
 $sql = "INSERT INTO user (Fname,Lname,Email,Phone,Passwrd) VALUES ('$firstname','$lastname','$email','$phone','$hashed_password')";
 
 //$result = $conn->query($sql);
@@ -41,7 +41,7 @@ mysqli_close($conn);
     <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.php">TestTriClub</a>
+                <a class="navbar-brand">TestTriClub</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navi5">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>

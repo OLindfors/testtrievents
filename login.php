@@ -1,11 +1,46 @@
-<?php include("head.php"); ?>
+<?php include("head.php"); 
+
+include("conn.php");
+
+
+if (isset($_POST['email']) and $_POST['email'] = "outli@welho.com" and isset($_POST['password'])) {
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+	
+    $sql = "SELECT Passwrd FROM user WHERE Email = '$email'";
+
+    $result = $conn->query($sql); 
+
+   if ($result->num_rows > 0) {
+
+        while ($row = $result->fetch_assoc()) {
+
+        $hashed_password = $row['Passwrd']; 
+        }
+
+        if (password_verify ($password , $hashed_password) == TRUE) {
+            session_start();
+            $_SESSION['user']=$email;
+            header('Location: peruutukset.php');
+
+        } else {
+
+            $ilmoitus = 'Tarkista salasana';
+
+        } 
+    }
+
+}
+
+?>
 
     <body>
 
     <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.php">TestTriClub</a>
+                <a class="navbar-brand">TestTriClub</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navi7">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -16,11 +51,11 @@
             <div id="navi7" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="index.php"><span class="glyphicon glyphicon-home"></span></a></li>
-
+                    <li><a href="Ilmoittautuminen.php"><b>Kisakalenteri ja ilmoittautuminen</b></a></li>
+                    <li><a href="muutokset.php"><b>Muuta yhteystietojasi</b></a></li>
+                    <li><a href="tulokset.php"><b>Tulokset</b></a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index.php"><span class="glyphicon glyphicon-log-ou"></span> Logout</a></li>
-                </ul>
+                
             </div>
         </div>
     </nav>
@@ -46,7 +81,7 @@
 
             <div class="col-sm-5">
 
-                <form name="checking" action="peruutukset.php" method="post">
+                <form name="checking" action="" method="post">
                     <div class="form-group">
 
                         <label for="email">Sähköposti</label>

@@ -70,7 +70,7 @@ $sql = "INSERT INTO participation (UserID, RaceID) VALUES ('$userid', '$raceid')
 
     <div class="col-sm-6">
 
-        <form name="signin2" action="index.php">
+        <form name="signin2" action="logout.php">
             <div class="form-group">
                 <br>
                 <button class="btn btn-primary" type="submit" value="">Päätä ilmoittautuminen</button>

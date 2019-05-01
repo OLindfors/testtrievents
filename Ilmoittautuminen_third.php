@@ -27,7 +27,7 @@ mysqli_close($conn);
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.php">TestTriClub</a>
+            <a class="navbar-brand">TestTriClub</a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navi5">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>

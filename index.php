@@ -24,9 +24,7 @@
                     <li><a href="tulokset.php"><b>Tulokset</b></a></li>
 
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Admin login</a></li>
-                </ul>
+                
             </div>
         </div>
     </nav>
@@ -47,6 +45,7 @@
             <div id="uinti" class="col-sm-4">
                 <img src="swim.png" alt="Swim" class="img-thumbnail">
                 <br>
+                <!--pikalinkki ilmoittautumislomakkeelle-->
                 <a href="Ilmoittautuminen.php">
                     <button class="btn btn-default"><b>Ilmoittaudu kisoihin</b></button>
                 </a>
@@ -57,8 +56,9 @@
             <div id="fillari" class="col-sm-4">
                 <img src="bike.png" alt="Bike" class="img-thumbnail">
                 <br>
+                 <!--pikalinkki yhteystietojen muuttamiseen-->
                 <a href="muutokset.php">
-                    <button class="btn btn-default"><b>Muuta tietojasi</b></button>
+                    <button class="btn btn-default"><b>Muuta yhteystietojasi</b></button>
                 </a>
                 <br>
                 <br>
@@ -67,6 +67,7 @@
             <div id="juoksu" class="col-sm-4">
                 <img src="run.png" alt="Run" class="img-thumbnail">
                 <br>
+                 <!--pikalinkki tulokset sivulle-->
                 <a href="tulokset.php">
                     <button class="btn btn-default" id="tulos"><b>Katso tulokset</b></button>
                 </a>

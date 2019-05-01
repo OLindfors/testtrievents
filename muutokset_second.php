@@ -1,15 +1,14 @@
 <?php include("head.php");
 
-include("conn.php");
+    include("conn.php");
 
-$email = $_POST['email'];
-$password = $_POST['password'];
-$password = filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    session_start();
 
-    $sql = "SELECT UserID,Fname,Lname,Phone FROM user WHERE Email = '$email' AND Passwrd = '$hashed_password'";
+    //Henkilön s-postin perusteella haetaan tietokannasta henkilön muut tiedot user-taulusta (userID, etunimi, sukunimi ja puhelinnro).
+    
+    $sql = "SELECT UserID,Fname,Lname,Phone FROM user WHERE Email = '" . $_SESSION['user'] . "' ";
 
-    $result = $conn->query($sql);
+    $result = $conn->query($sql); 
 
     if ($result->num_rows > 0) {
     
@@ -21,8 +20,6 @@ $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $phone = $row["Phone"];
 
         }
-    } else {
-        echo $hashed_password;
     }
 
     $conn->close();
@@ -34,7 +31,7 @@ $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.php">TestTriClub</a>
+            <a class="navbar-brand">TestTriClub</a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navi7">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -42,13 +39,13 @@ $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             </button>
 
         </div>
-        <!--div id="navi7" class="collapse navbar-collapse">
+        <div id="navi7" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="index.php"><span class="glyphicon glyphicon-home"></span></a></li>
 
 
             </ul>
-        </div-->
+        </div>
     </div>
 </nav>
 
@@ -59,7 +56,7 @@ $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         </div>
 
         <div class="col-sm-10">
-            <h3 class="oranssi">Muuta yhteystietojasi</h3>
+            <h3 class="oranssi">Päivitä yhteystietosi</h3>
             <br>
         </div>
         <div class="col-sm-1">
@@ -72,15 +69,15 @@ $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         </div>
 
         <div class="col-sm-5">
-            <p>Tee tarvittavat muutokset ja tallenna.</p> 
+            <h4>Tee tarvittavat muutokset ja tallenna.</h4> 
 
             <form name="changes" action="changes.php" method="post">
                 <div class="form-group">
-
+                    <!--Tietokannasta haetut tiedot näytetään henkilölle lomakekentissä, paitsi userID on piilotettuna-->
                     <label for="userid" style="display:none">ID</label>
                     <input type="text" class="form-control" style="display:none" name="userid" value=<?php echo $userid ?>>
                     <label for="email">Sähköposti</label>
-                    <input type="email" class="form-control" name="email" value=<?php echo $email ?>>
+                    <input type="email" class="form-control" name="email" value=<?php echo $_SESSION['user'] ?>>
                     <label for="fname">Etunimi</label>
                     <input type="text" class="form-control" name="fname" value=<?php echo $fname ?>>
                     <label for="lname">Sukunimi</label>
@@ -95,12 +92,12 @@ $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                 </div>
             </form>
 
-            <form name="peruuta" action="index.php">
+            <!--Henkilö voi kirjautua ulos tekemättä muutoksia-->
+            <form name="peruuta" action="logout.php">
                 <div class="form-group">
                 <button class="btn btn-warning" type="submit" value="muutokset">Poistu tallentamatta</button>
                 </div>
             </form>
-
 
         </div>
         <div class="col-sm-5">
