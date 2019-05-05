@@ -69,7 +69,8 @@
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="email">Sähköposti:</label>
                         <div class="col-sm-7">
-                            <input type="email" class="form-control" name="email" placeholder="Sähköposti" required>
+                            <input type="email" class="form-control" name="email" placeholder="Sähköposti" required 
+                            value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -77,6 +78,7 @@
                         <div class="col-sm-7">
                             <input type="email" class="form-control" name="emailx" placeholder="Toista sähköposti"
                                    required>
+                                <p><?php if(isset($errors['email'])) echo $errors['email']; ?></p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -89,7 +91,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="password">Salasana:</label>
                         <div class="col-sm-7">
-                            <input type="password" minlength="8" class="form-control" name="password"
+                            <input type="password" minlength="8" class="form-control" name="password" 
                                    placeholder="Keksi itsellesi salasana (min. pituus 8 merkkiä)" required>
                         </div>
                     </div>
@@ -99,11 +101,12 @@
                         <div class="col-sm-7">
                             <input type="password" minlength="8" class="form-control" name="password2" placeholder="Toista salasana"
                                    required>
+                                   <p><?php if(isset($errors['password'])) echo $errors['password']; ?></p>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-7">
-                            <button class="btn btn-primary" type="submit" onclick="return validateForm()" name="register">Tallenna tiedot
+                            <button class="btn btn-primary" type="submit" name="register">Tallenna tiedot
                             </button>
                         </div>
                 </form>

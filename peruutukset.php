@@ -18,6 +18,7 @@
             $phone = $row["Phone"];
 
         }
+    
     }
 
     $conn->close();

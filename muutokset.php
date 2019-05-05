@@ -5,7 +5,7 @@
     /*Henkilön sisäänkirjautuesssa tarkistetaan, että kyseinen s-posti ja salasana löytyvät "parina" tietokannasta user-taulusta. 
     Sähköpostin perusteella haetaan hashattu muoto salasanasta ja verrataan sitä annettuun salasanaan.
     */
-if (isset($_POST['email']) && isset($_POST['password'])) {
+if (!empty($_POST['email']) && !empty($_POST['password'])) {
 	
     $email=$_POST['email'];
     $password = $_POST['password'];

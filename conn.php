@@ -1,9 +1,9 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "laurea";
-$dbname = "testtri";
+$servername = "127.0.0.1:51099";
+$username = "azure";
+$password = "6#vWHD_$";
+$dbname = "localdb";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

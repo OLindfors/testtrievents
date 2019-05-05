@@ -1,36 +1,36 @@
 <?php include("head.php");  
 
 include("conn.php");
+               
+    //Edellisellä sivulla annetut tiedot tallennetaan tietokantaan
+    $firstname = filter_var($_POST['fname'], FILTER_SANITIZE_STRING);
+    $lastname = filter_var($_POST['lname'], FILTER_SANITIZE_STRING);
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $emailCheck = filter_var($_POST['emailx'], FILTER_SANITIZE_EMAIL);
+    $phone = filter_var($_POST['phone'], FILTER_SANITIZE_NUMBER_INT);
+    $password = filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
+    $passwordCheck = filter_var($_POST['password2'], FILTER_SANITIZE_SPECIAL_CHARS);
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-/*Edellisellä sivulla annetut tiedot tallennetaan tietokantaan*/
-$firstname = filter_var($_POST['fname'], FILTER_SANITIZE_STRING);
-$lastname = filter_var($_POST['lname'], FILTER_SANITIZE_STRING);
-$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-$emailCheck = filter_var($_POST['emailx'], FILTER_SANITIZE_EMAIL);
-$phone = filter_var($_POST['phone'], FILTER_SANITIZE_NUMBER_INT);
-$password = filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
-$passwordCheck = filter_var($_POST['password2'], FILTER_SANITIZE_SPECIAL_CHARS);
-$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $query = "SELECT Email FROM user WHERE Email = '$email'";
 
-$query = "SELECT Email FROM user WHERE Email = '$email'";
+    $result = mysqli_query($conn,$query) or die (mysqli_error($conn));
 
-$result = mysqli_query($conn,$query) or die (mysqli_error($conn));
+    if (mysqli_num_rows($result) > 0) {
+        $error_message="Sähköposti on jo käytössä.";
+    } else {
 
-if (mysqli_num_rows($result) > 0) {
-    $error_message="Sähköposti on jo käytössä.";
-} else {
+            /*Edellisellä sivulla annetut tiedot tallennetaan tietokantaan*/
+            $sql = "INSERT INTO user (Fname,Lname,Email,Phone,Passwrd) VALUES ('$firstname','$lastname','$email','$phone','$hashed_password')";
 
-/*Edellisellä sivulla annetut tiedot tallennetaan tietokantaan*/
-$sql = "INSERT INTO user (Fname,Lname,Email,Phone,Passwrd) VALUES ('$firstname','$lastname','$email','$phone','$hashed_password')";
+            //$result = $conn->query($sql);
 
-//$result = $conn->query($sql);
-
-if ($conn->query($sql) == FALSE) {
+            if ($conn->query($sql) == FALSE) {
   
-    echo "0 results";
-  }
-
-}
+            echo "0 results";
+            }   
+        }
+    
   
 mysqli_close($conn);
 
@@ -70,7 +70,7 @@ mysqli_close($conn);
             </div>
 
             <div class="col-sm-10">
-                <h3 class="turkoosi"><?php echo "Tiedot tallennettu onnistuneesti!" ?></h3>
+                <h3 class="turkoosi"></h3>
 
             </div>
 
@@ -86,7 +86,7 @@ mysqli_close($conn);
 
     <div class="col-sm-4">
 
-<!--Tallennetut tiedot näytetään käyttäjälle (ei voi enää muuttaa tässä) ja hän voi jatkaa varsinaiseen ilmoittautumiseen-->
+    <!--Tallennetut tiedot näytetään käyttäjälle (ei voi enää muuttaa tässä) ja hän voi jatkaa varsinaiseen ilmoittautumiseen-->
         <form name="signin1" action="Ilmoittautuminen_third.php" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" name="fname" value=<?php echo $firstname ?> readonly>
@@ -107,8 +107,9 @@ mysqli_close($conn);
             </button>
         </form>
     </div>
+
     <div class="col-sm-5">
     </div>
-    </div>
+</div>
 
 <?php include("footer.php"); ?>

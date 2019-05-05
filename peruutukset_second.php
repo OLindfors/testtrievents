@@ -11,10 +11,6 @@
         $sql = "SELECT user.UserID,user.Fname,user.Lname,participation.RaceID FROM user INNER JOIN participation ON user.UserID = participation.UserID WHERE user.UserID = '$userid' ";
 
         $result = $conn->query($sql); 
-
-        if (!$result) {
-            echo "Ei henkilöä tällä ID:llä tietokannassa.";
-        }
     }
 ?>
         
@@ -71,7 +67,10 @@
         
             echo $userid . "-". $fname . "-" . $lname . "-" . $raceid . "<br>";
 
-            }
+            } 
+            
+        } else {
+            echo "Ei henkilöä tällä ID:llä tietokannassa.";
         }
 
 $conn->close();
