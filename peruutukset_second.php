@@ -70,7 +70,8 @@
             } 
             
         } else {
-            echo "Ei henkilöä tällä ID:llä tietokannassa.";
+            echo "Ei henkilöä tällä ID:llä tietokannassa. <br>";
+            echo "<a href='peruutukset.php'>Hae toinen henkilö</a>";
         }
 
 $conn->close();

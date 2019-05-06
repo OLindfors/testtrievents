@@ -12,29 +12,15 @@ include("conn.php");
     $passwordCheck = filter_var($_POST['password2'], FILTER_SANITIZE_SPECIAL_CHARS);
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = "SELECT Lname FROM user WHERE Email = '$email'";
-
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $error_message="Sähköposti on jo käytössä.";
-        echo $error_message;
-        exit();
-    } else {
-
             /*Edellisellä sivulla annetut tiedot tallennetaan tietokantaan user-tauluun: etunimi, sukunimi, s-posti, puhelin ja salasana*/
-        $sql = "INSERT INTO user (Fname,Lname,Email,Phone,Passwrd) VALUES ('$firstname','$lastname','$email','$phone','$hashed_password')";
+    $sql = "INSERT INTO user (Fname,Lname,Email,Phone,Passwrd) VALUES ('$firstname','$lastname','$email','$phone','$hashed_password')";
 
-            //$result = $conn->query($sql);
+        if ($conn->query($sql) == FALSE) {
 
-            if ($conn->query($sql) == FALSE) {
-  
             echo "0 results";
-            }   
-        }
-    
+        }   
   
-mysqli_close($conn);
+    $conn->close();
 
 ?>
 
@@ -72,7 +58,7 @@ mysqli_close($conn);
             </div>
 
             <div class="col-sm-10">
-                <h3 class="turkoosi"></h3>
+                <h3 class="turkoosi">Tallenetut tiedot</h3>
 
             </div>
 
