@@ -12,16 +12,18 @@ include("conn.php");
     $passwordCheck = filter_var($_POST['password2'], FILTER_SANITIZE_SPECIAL_CHARS);
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $query = "SELECT Email FROM user WHERE Email = '$email'";
+    $query = "SELECT Lname FROM user WHERE Email = '$email'";
 
-    $result = mysqli_query($conn,$query) or die (mysqli_error($conn));
+    $result = $conn->query($sql);
 
-    if (mysqli_num_rows($result) > 0) {
+    if ($result->num_rows > 0) {
         $error_message="Sähköposti on jo käytössä.";
+        echo $error_message;
+        exit();
     } else {
 
-            /*Edellisellä sivulla annetut tiedot tallennetaan tietokantaan*/
-            $sql = "INSERT INTO user (Fname,Lname,Email,Phone,Passwrd) VALUES ('$firstname','$lastname','$email','$phone','$hashed_password')";
+            /*Edellisellä sivulla annetut tiedot tallennetaan tietokantaan user-tauluun: etunimi, sukunimi, s-posti, puhelin ja salasana*/
+        $sql = "INSERT INTO user (Fname,Lname,Email,Phone,Passwrd) VALUES ('$firstname','$lastname','$email','$phone','$hashed_password')";
 
             //$result = $conn->query($sql);
 
