@@ -52,7 +52,7 @@
 
             <div class="col-sm-8">
 
-<!--Käyttäjä syöttää etunimi, sukunimi, s-posti kahteen kertaan, puhelin ja keksii salasanan (syöttää kaksi kertaa)-->
+<!--Käyttäjä syöttää etunimi, sukunimi, s-posti kaksi kertaa, puhelin ja keksii salasanan (toistaa sen)-->
                 <form class="form-horizontal" name="signin1" action="Ilmoittautuminen_second.php" method="post">
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="fname">Etunimi:</label>

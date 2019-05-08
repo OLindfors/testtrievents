@@ -113,4 +113,11 @@ $conn->close();
     <div class="col-sm-3">
     </div>
     
-    <?php include("footer.php"); ?>
+    <?php 
+    
+    session_unset();
+
+    session_destroy();
+    
+
+    include("footer.php"); ?>
