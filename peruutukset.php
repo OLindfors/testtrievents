@@ -4,23 +4,6 @@
 
     session_start();
 
-    $sql = "SELECT UserID,Fname,Lname,Phone FROM user WHERE Email = '" . $_SESSION['user'] . "' ";
-
-    $result = $conn->query($sql); 
-
-    if ($result->num_rows > 0) {
-    
-        while ($row = $result->fetch_array()) {
-
-            $userid = $row["UserID"];
-            $fname = $row["Fname"];
-            $lname = $row["Lname"];
-            $phone = $row["Phone"];
-
-        }
-    
-    }
-
     $conn->close();
 
 ?>

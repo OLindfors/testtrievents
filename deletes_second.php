@@ -24,9 +24,6 @@
 
                 <ul class="nav navbar-nav">
                     <li><a href="index.php"><span class="glyphicon glyphicon-home"></span></a></li>
-                    <!--li><a href="kalenteri.php"><b>Kisakalenteri ja ilmoittautuminen</b></a></li>
-                    <li><a href="muutokset.php"><b>Muuta yhteystietojasi</b></a></li>
-                    <li><a href="tulokset.php"><b>Tulokset</b></a></li-->
 
                 </ul>
             </div>
@@ -54,6 +51,7 @@
 
                 <?php 
 
+                    //Tässä varsinainen henkilön tietojen poisto tietokannasta user-taulusta
                     $userid = $_POST['userid'];
 
                     $sql = "DELETE FROM user WHERE UserID = '$userid'";
@@ -83,4 +81,10 @@
         </div>
     </div>
 
-<?php include("footer.php"); ?>
+<?php 
+
+session_unset();
+
+session_destroy();
+
+include("footer.php"); ?>

@@ -51,6 +51,7 @@
 
                 <?php 
 
+                    /*userID:n ja raceID:n perusteella perutaan osallistuminen tiettyyn kisaan (raceID kisakohtainen)*/
                     $userid = $_POST['userid'];
                     $raceid = $_POST['raceid'];
 
@@ -71,6 +72,9 @@
                     <input type="text" class="form-control" name="userid" value=<?php echo $userid ?> readonly>
 
                     <br>
+                    <!--Jos henkilö oli ilmoittautunut vain yhteen kisaan, poistetaan myös hänen muut tietonsa tietokannasta eli 
+                    admin jatkaa klikkaamalla ao. buttonia-->
+
                     <button class="btn btn-primary" type="submit" value="muutokset">Poista myös henkilön tiedot</button>
 
                     </div>

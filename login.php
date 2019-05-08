@@ -8,7 +8,8 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
-	
+    
+    //Haetaan userID 1 salasana tietokannasta
     $sql = "SELECT Passwrd FROM user WHERE userID = '1'";
 
     $result = $conn->query($sql); 
@@ -19,7 +20,7 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
 
         $hashed_password = $row['Passwrd']; 
         }
-
+        //Tarkistetaan vastaako annettu salasana tietokannassa olevaa. Jos vastaa session aloitus, sähköposti Session muuttujana.
         if (password_verify ($password , $hashed_password) == TRUE) {
             session_start();
             $_SESSION['user']=$email;

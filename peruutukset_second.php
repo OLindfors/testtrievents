@@ -4,6 +4,7 @@
 
     session_start();
     
+    //Tietokannasta haetaan annetun userID:n perusteella henkilön kisaosallistumiset (menneet sekä tulevat), tulokset näytetään alempana sivulla.
     $userid = $_POST['userid'];
 
     if (isset($_POST['userid']) && !empty($_POST['userid'])) {
@@ -53,7 +54,7 @@
 
         <div class="col-sm-10">
            
-        <!--tässä näytetään tietokantahaun tulokset-->
+        <!--tässä näytetään tietokantahaun tulokset: userID, sukunimi, etunimi ja raceID-->
 <?php
         
             if ($result->num_rows > 0) {
